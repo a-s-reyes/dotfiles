@@ -1,0 +1,27 @@
+[user]
+    name = andrean reyes
+    email = andrean.reyes@drmsusa.com
+
+[init]
+    defaultBranch = main
+
+[core]
+    editor = nvim
+
+[pull]
+    rebase = false
+
+[push]
+    default = current
+    autoSetupRemote = true
+
+[color]
+    ui = auto
+
+[alias]
+    s = status -sb
+    co = checkout
+    br = branch
+    lg = log --oneline --graph --decorate
+    last = log -1 HEAD
+    unstage = reset HEAD --

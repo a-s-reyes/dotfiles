@@ -1,0 +1,37 @@
+# ─────────────────────────────────────────────
+#  OS junk
+# ─────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# ─────────────────────────────────────────────
+#  Editor / IDE noise
+# ─────────────────────────────────────────────
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# ─────────────────────────────────────────────
+#  Backups created by bootstrap scripts
+# ─────────────────────────────────────────────
+*.backup
+*.bak
+
+# ─────────────────────────────────────────────
+#  Per-machine override files — never commit
+# ─────────────────────────────────────────────
+bashrc.local
+zshrc.local
+*.local
+
+# ─────────────────────────────────────────────
+#  Nvim runtime data (downloaded, not config)
+#  - lazy-lock.json IS tracked (intentionally not ignored)
+# ─────────────────────────────────────────────
+nvim/spell/*.spl
+nvim/.netrwhist
+nvim/sessions/

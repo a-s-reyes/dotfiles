@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(git -C d:/repos/dotfiles ls-files --others --exclude-standard)",
+      "Bash(git add *)"
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+# ─────────────────────────────────────────────────────────────────
+#  Interactive guard — skip the rest if running non-interactively
+#  (scripts, scp, etc. shouldn't trigger aliases/prompts)
+# ─────────────────────────────────────────────────────────────────
+[[ $- != *i* ]] && return
+
+# ─────────────────────────────────────────────────────────────────
+#  Editor
+# ─────────────────────────────────────────────────────────────────
+export EDITOR=nvim
+export VISUAL=nvim
+export PAGER=less
+
+# ─────────────────────────────────────────────────────────────────
+#  History — bigger, deduped, append (don't overwrite on exit)
+# ─────────────────────────────────────────────────────────────────
+export HISTSIZE=100000
+export HISTFILESIZE=200000
+export HISTCONTROL=ignoreboth:erasedups
+shopt -s histappend
+shopt -s checkwinsize
+
+# ─────────────────────────────────────────────────────────────────
+#  PATH — add ~/.local/bin and ~/.cargo/bin if they exist
+# ─────────────────────────────────────────────────────────────────
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
+
+# ─────────────────────────────────────────────────────────────────
+#  Aliases
+# ─────────────────────────────────────────────────────────────────
+alias ll='ls -lah --color=auto'
+alias l='ls -lh --color=auto'
+alias la='ls -A --color=auto'
+alias grep='grep --color=auto'
+alias ..='cd ..'
+alias ...='cd ../..'
+
+# git
+alias gs='git status'
+alias gd='git diff'
+alias gco='git checkout'
+alias gp='git pull'
+alias gl='git log --oneline --graph --decorate'
+
+# ─────────────────────────────────────────────────────────────────
+#  Functions
+# ─────────────────────────────────────────────────────────────────
+mkcd() { mkdir -p "$1" && cd "$1"; }
+
+# ─────────────────────────────────────────────────────────────────
+#  Prompt — green user@host : blue path $
+# ─────────────────────────────────────────────────────────────────
+PS1='\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\w\[\e[0m\]$ '
+
+# ─────────────────────────────────────────────────────────────────
+#  Machine-specific overrides (not in git) — drop secrets/work stuff here
+# ─────────────────────────────────────────────────────────────────
+[ -f ~/.bashrc.local ] && source ~/.bashrc.local
