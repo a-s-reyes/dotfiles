@@ -22,11 +22,6 @@ $RECYCLE.BIN/
 *.bak
 
 # ─────────────────────────────────────────────
-#  Claude Code local config — keep local, never commit
-# ─────────────────────────────────────────────
-.claude/
-
-# ─────────────────────────────────────────────
 #  Per-machine override files — never commit
 # ─────────────────────────────────────────────
 bashrc.local
