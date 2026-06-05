@@ -80,13 +80,8 @@ EOF
     fi
 fi
 
-if should_link zsh; then
-    echo "zsh:"
-    link "$REPO/zsh/zshrc" "$HOME/.zshrc"
-fi
-
 # git/ is template-only — copy ~/dotfiles/git/gitconfig to ~/.gitconfig by hand.
 # Not symlinked, not auto-linked.
 
 echo ""
-echo "Done. Open a new terminal (or 'source ~/.bashrc' / 'source ~/.zshrc') to apply."
+echo "Done. Open a new terminal (or 'source ~/.bashrc') to apply."

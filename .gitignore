@@ -25,7 +25,6 @@ $RECYCLE.BIN/
 #  Per-machine override files — never commit
 # ─────────────────────────────────────────────
 bashrc.local
-zshrc.local
 *.local
 
 # ─────────────────────────────────────────────
