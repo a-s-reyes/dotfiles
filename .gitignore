@@ -29,7 +29,8 @@ bashrc.local
 
 # ─────────────────────────────────────────────
 #  Nvim runtime data (downloaded, not config)
-#  - lazy-lock.json IS tracked (intentionally not ignored)
+#  - nvim-pack-lock.json IS tracked (intentionally not ignored)
+#    so plugin revisions are pinned/reproducible across machines.
 # ─────────────────────────────────────────────
 nvim/spell/*.spl
 nvim/.netrwhist

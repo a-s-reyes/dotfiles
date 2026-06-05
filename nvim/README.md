@@ -135,6 +135,16 @@ Managed by `vim.pack` (list in `lua/pack.lua`):
 ```
 Add a plugin permanently by appending its URL to the `vim.pack.add({...})` list in `lua/pack.lua`.
 
+### Lockfile
+
+`vim.pack` writes **`nvim-pack-lock.json`** into this folder, pinning each plugin to an exact git revision (the modern equivalent of `lazy-lock.json`). It's **committed to the repo on purpose** so a fresh machine installs the same plugin versions and you can roll back a bad `:PackUpdate` from git history.
+
+Treat it like any other lockfile: it changes when you run `:PackUpdate`, so commit the updated file to propagate version bumps to your other machines.
+```bash
+cd ~/dotfiles && git add nvim/nvim-pack-lock.json && git commit -m "nvim: bump plugins"
+```
+If you'd rather let plugins float to the latest on every machine instead, gitignore it and drop the tracked copy.
+
 ## Customizing
 
 - **Editor options** → `lua/options.lua`.
