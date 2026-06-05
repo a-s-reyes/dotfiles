@@ -7,15 +7,14 @@ Personal configuration for the tools I live in. Portable across Linux, macOS, an
 ```
 dotfiles/
 ├── bash/         portable .bashrc + README
-├── zsh/          portable .zshrc + README
 ├── tmux/         tmux.conf with vim-style navigation + README
 ├── git/          portable gitconfig + README
-├── nvim/         Neovim config (NvChad v2.5 starter) + README
+├── nvim/         Neovim config — native vim.pack + mini.nvim, no plugin-manager framework
 ├── bootstrap.sh  Linux/macOS link script
 └── bootstrap.ps1 Windows link script
 ```
 
-Each tool folder has its own `README.md` with prerequisites, install steps, key bindings, and customization notes.
+Each tool folder (except `nvim/`) has its own `README.md` with prerequisites, install steps, key bindings, and customization notes.
 
 ## Quick start
 
@@ -61,10 +60,29 @@ Re-running is safe — existing links get replaced cleanly; real files get backe
 | Folder | Tool | Bridging | Notes |
 |---|---|---|---|
 | [`bash/`](bash/README.md) | bash shell | symlink (live mount) | per-machine override via `~/.bashrc.local` |
-| [`zsh/`](zsh/README.md) | zsh shell | symlink (live mount) | per-machine override via `~/.zshrc.local` |
 | [`tmux/`](tmux/README.md) | tmux | symlink (live mount) | prefix is `Ctrl-a`, vim-style nav |
-| [`nvim/`](nvim/README.md) | Neovim | symlink (live mount) | NvChad-based, requires Nerd Font + ripgrep + fd |
+| `nvim/` | Neovim | symlink (live mount) | native `vim.pack` config — needs Neovim nightly (0.12+) |
 | [`git/`](git/README.md) | git | **template only** | copy manually to `~/.gitconfig` on a new machine |
+
+## Neovim
+
+A lean, framework-free config built on Neovim's own building blocks. `init.lua` just loads a handful of modules under `lua/`:
+
+| Module | What it does |
+|---|---|
+| `options.lua` | editor options + yank-highlight autocmd |
+| `keymaps.lua` | leader is `Space`; QoL motions, visual-mode line moves, native undotree |
+| `commands.lua` | `:PackAdd` / `:PackDel` / `:PackUpdate` wrappers around `vim.pack` |
+| `pack.lua` | plugin list + setup for the [mini.nvim](https://github.com/nvim-mini/mini.nvim) suite and fugitive |
+| `treesitter.lua` | installs parsers (`c`, `cpp`, `lua`, `bash`, `json`, `markdown`) and starts highlighting per filetype |
+| `lsp.lua` | `mason` + `nvim-lspconfig`; enables `clangd` and `lua_ls`, format-on-save for C/C++ |
+
+**Plugins** (managed by the built-in `vim.pack`, no lazy.nvim/packer):
+moonfly colorscheme, the mini.nvim suite (`files`, `pick`, `completion`, `snippets`, `surround`, `diff`, `notify`, `cmdline`), `friendly-snippets`, `nvim-treesitter`, `nvim-lspconfig`, `mason.nvim`, and `vim-fugitive`.
+
+**Prerequisites:** Neovim nightly (uses `vim.pack`), [ripgrep](https://github.com/BurntSushi/ripgrep) for the mini.pick grep/file pickers, a system `clangd` on `PATH` for C/C++, and a Nerd Font for icons.
+
+A few key bindings: `-` opens the mini file explorer, `<leader>pf` picks files, `<leader>ps` greps the word under the cursor, `<leader>gg` opens fugitive, `<leader>u` toggles the undotree.
 
 ## Updating
 
@@ -73,14 +91,15 @@ cd ~/dotfiles
 git pull
 ```
 
-For nvim plugins (after pulling a new `lazy-lock.json`):
+For nvim plugins (from inside Neovim):
 ```
-:Lazy sync
+:PackUpdate          " update everything
+:PackUpdate name     " update specific plugins
 ```
 
 For shell config (after editing aliases/functions):
 ```bash
-source ~/.bashrc      # or ~/.zshrc
+source ~/.bashrc
 ```
 
 For tmux:
@@ -97,8 +116,8 @@ tmux source-file ~/.config/tmux/tmux.conf
 
 ## Per-machine overrides
 
-Shell configs source machine-specific files (`~/.bashrc.local`, `~/.zshrc.local`) at the end if they exist. Put work-only proxies, internal aliases, and anything secret there — those files are gitignored.
+The bash config sources `~/.bashrc.local` at the end if it exists. Put work-only proxies, internal aliases, and anything secret there — those files are gitignored.
 
 ## License
 
-MIT for everything I wrote. The `nvim/` folder includes its upstream MIT `LICENSE` from the NvChad starter.
+MIT.
