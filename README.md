@@ -2,21 +2,34 @@
 
 Personal configuration for the tools I live in. Portable across Linux, macOS, and Windows.
 
+Each tool lives in its own folder with a `README.md` covering its prerequisites, install steps, symlink target, and key bindings. **This file is just the quick start — see the per-tool READMEs for the details.**
+
 ## Layout
 
 ```
 dotfiles/
-├── bash/         portable .bashrc + README
-├── tmux/         tmux.conf with vim-style navigation + README
-├── git/          portable gitconfig + README
-├── nvim/         Neovim config — native vim.pack + mini.nvim, no plugin-manager framework
+├── bash/         portable .bashrc                                  → bash/README.md
+├── tmux/         tmux.conf with vim-style navigation               → tmux/README.md
+├── git/          portable gitconfig (template, not symlinked)      → git/README.md
+├── nvim/         Neovim config — native vim.pack + mini.nvim       → nvim/README.md
 ├── bootstrap.sh  Linux/macOS link script
 └── bootstrap.ps1 Windows link script
 ```
 
-Each tool folder (except `nvim/`) has its own `README.md` with prerequisites, install steps, key bindings, and customization notes.
+## Per-tool
+
+Start here — each README has the full setup, including how to symlink it on each OS.
+
+| Folder | Tool | Bridging | Setup |
+|---|---|---|---|
+| `bash/` | bash shell | symlink (live mount) | [bash/README.md](bash/README.md) |
+| `tmux/` | tmux | symlink (live mount) | [tmux/README.md](tmux/README.md) |
+| `nvim/` | Neovim | symlink (live mount) | [nvim/README.md](nvim/README.md) |
+| `git/` | git | **template only** (copy by hand) | [git/README.md](git/README.md) |
 
 ## Quick start
+
+The bootstrap scripts do, for each tool, what its README describes by hand — back up any existing config, then symlink (or junction on Windows) the repo's copy into place.
 
 ### Linux / macOS
 
@@ -24,13 +37,8 @@ Each tool folder (except `nvim/`) has its own `README.md` with prerequisites, in
 git clone <repo-url> ~/dotfiles
 cd ~/dotfiles
 chmod +x bootstrap.sh
-./bootstrap.sh
-```
-
-By default `bootstrap.sh` links every applicable tool. To link only specific ones:
-
-```bash
-./bootstrap.sh nvim tmux
+./bootstrap.sh                 # link everything applicable
+./bootstrap.sh nvim tmux       # or just specific tools
 ```
 
 ### Windows
@@ -40,78 +48,35 @@ Enable **Developer Mode** first (Settings → For developers → Developer Mode 
 ```powershell
 git clone <repo-url> D:\repos\dotfiles
 cd D:\repos\dotfiles
-.\bootstrap.ps1
+.\bootstrap.ps1                # link everything applicable (nvim today)
+.\bootstrap.ps1 nvim           # or just specific tools
 ```
 
-Default links `nvim` (junction). Add other tools as their folders are created.
+> `git/` is intentionally **not** linked by either script — it's a template you copy to `~/.gitconfig` once. See [git/README.md](git/README.md).
 
-## What each script does
+## What the bootstrap scripts do
 
-For every tool it's asked to link:
+For every tool they're asked to link:
 
-1. Backs up the existing config (if any) to `<path>.backup`.
-2. Creates a symlink (or junction on Windows) from the user's expected config location to this repo.
-3. Skips silently if the source doesn't exist in the repo.
+1. Back up the existing config (if any) to `<path>.backup`.
+2. Create a symlink (or junction on Windows) from the user's expected config location to this repo.
+3. Skip silently if the source doesn't exist in the repo.
 
 Re-running is safe — existing links get replaced cleanly; real files get backed up exactly once.
-
-## Per-tool
-
-| Folder | Tool | Bridging | Notes |
-|---|---|---|---|
-| [`bash/`](bash/README.md) | bash shell | symlink (live mount) | per-machine override via `~/.bashrc.local` |
-| [`tmux/`](tmux/README.md) | tmux | symlink (live mount) | prefix is `Ctrl-a`, vim-style nav |
-| `nvim/` | Neovim | symlink (live mount) | native `vim.pack` config — needs Neovim nightly (0.12+) |
-| [`git/`](git/README.md) | git | **template only** | copy manually to `~/.gitconfig` on a new machine |
-
-## Neovim
-
-A lean, framework-free config built on Neovim's own building blocks. `init.lua` just loads a handful of modules under `lua/`:
-
-| Module | What it does |
-|---|---|
-| `options.lua` | editor options + yank-highlight autocmd |
-| `keymaps.lua` | leader is `Space`; QoL motions, visual-mode line moves, native undotree |
-| `commands.lua` | `:PackAdd` / `:PackDel` / `:PackUpdate` wrappers around `vim.pack` |
-| `pack.lua` | plugin list + setup for the [mini.nvim](https://github.com/nvim-mini/mini.nvim) suite and fugitive |
-| `treesitter.lua` | installs parsers (`c`, `cpp`, `lua`, `bash`, `json`, `markdown`) and starts highlighting per filetype |
-| `lsp.lua` | `mason` + `nvim-lspconfig`; enables `clangd` and `lua_ls`, format-on-save for C/C++ |
-
-**Plugins** (managed by the built-in `vim.pack`, no lazy.nvim/packer):
-moonfly colorscheme, the mini.nvim suite (`files`, `pick`, `completion`, `snippets`, `surround`, `diff`, `notify`, `cmdline`), `friendly-snippets`, `nvim-treesitter`, `nvim-lspconfig`, `mason.nvim`, and `vim-fugitive`.
-
-**Prerequisites:** Neovim nightly (uses `vim.pack`), [ripgrep](https://github.com/BurntSushi/ripgrep) for the mini.pick grep/file pickers, a system `clangd` on `PATH` for C/C++, and a Nerd Font for icons.
-
-A few key bindings: `-` opens the mini file explorer, `<leader>pf` picks files, `<leader>ps` greps the word under the cursor, `<leader>gg` opens fugitive, `<leader>u` toggles the undotree.
 
 ## Updating
 
 ```bash
-cd ~/dotfiles
-git pull
+cd ~/dotfiles && git pull
 ```
 
-For nvim plugins (from inside Neovim):
-```
-:PackUpdate          " update everything
-:PackUpdate name     " update specific plugins
-```
-
-For shell config (after editing aliases/functions):
-```bash
-source ~/.bashrc
-```
-
-For tmux:
-```bash
-tmux source-file ~/.config/tmux/tmux.conf
-```
+Then apply per tool (details in each README): `source ~/.bashrc` for bash, `:PackUpdate` in nvim, `tmux source-file ~/.config/tmux/tmux.conf` for tmux.
 
 ## Adding a new tool
 
-1. Create a new folder at the repo root: `mkdir <tool>`.
+1. Create a folder at the repo root: `mkdir <tool>`.
 2. Put the canonical config inside it.
-3. Add a `README.md` covering prerequisites, install, key bindings, and customization.
+3. Add a `README.md` covering prerequisites, install, symlink target, key bindings, and customization.
 4. Add a link block to `bootstrap.sh` and/or `bootstrap.ps1`.
 
 ## Per-machine overrides
