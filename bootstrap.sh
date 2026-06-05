@@ -63,6 +63,11 @@ if should_link nvim; then
     link "$REPO/nvim" "$HOME/.config/nvim"
 fi
 
+if should_link doom; then
+    echo "doom:"
+    link "$REPO/doom" "$HOME/.config/doom"
+fi
+
 if should_link tmux; then
     echo "tmux:"
     link "$REPO/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
