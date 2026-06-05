@@ -22,7 +22,17 @@ The whole folder is symlinked into place as one unit, so everything under `lua/`
 - **git** — `vim.pack` clones plugins over https.
 - **A Nerd Font** — for icons in mini.nvim UIs. Install one (e.g. [JetBrainsMono Nerd Font](https://www.nerdfonts.com/)) and set it as your terminal font.
 - **[ripgrep](https://github.com/BurntSushi/ripgrep)** (`rg`) — used by the mini.pick grep/file pickers.
-- **A system `clangd` on `PATH`** — for C/C++ LSP and format-on-save (uses the project's `.clang-format` / `.clang-tidy`). `lua_ls` is installed automatically by `mason`.
+- **A system `clangd` on `PATH`** — for C/C++ LSP and format-on-save (uses the project's `.clang-format` / `.clang-tidy`).
+
+### LSP servers
+
+`lua/lsp.lua` enables `clangd` and `lua_ls`. `mason` does **not** auto-install them — `clangd` comes from your system package above, and on a fresh machine you install the Lua server once via mason:
+
+```vim
+:MasonInstall lua-language-server
+```
+
+(or `:Mason`, find `lua-language-server`, press `i`). Mason stores it under `~/.local/share/nvim/mason/` — downloaded runtime data, not part of this repo, so it's reinstalled per machine. Add more servers the same way and enable them in `lua/lsp.lua`.
 
 Quick install of the CLI prerequisites:
 ```bash
