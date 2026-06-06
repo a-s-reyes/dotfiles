@@ -11,7 +11,7 @@ dotfiles/
 ├── bash/         portable .bashrc                                  → bash/README.md
 ├── tmux/         tmux.conf with vim-style navigation               → tmux/README.md
 ├── git/          portable gitconfig (template, not symlinked)      → git/README.md
-├── nvim/         Neovim config — native vim.pack + mini.nvim       → nvim/README.md
+├── nvim/         Neovim config — vim.pack, VSCode-like stack       → nvim/README.md
 ├── doom/         Doom Emacs config — $DOOMDIR (Linux/macOS)        → doom/README.md
 ├── bootstrap.sh  Linux/macOS link script
 └── bootstrap.ps1 Windows link script

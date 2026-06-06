@@ -1,5 +1,7 @@
 vim.g.netrw_banner = 0
 
+vim.opt.termguicolors = true -- 24-bit color (required by the UI plugins)
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -24,7 +26,7 @@ vim.opt.backup = false
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 vim.opt.undofile = true
 
-vim.opt.completeopt = "menuone,noselect,fuzzy,nosort"
+vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.shortmess:append("c")
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.isfname:append("@-@")
@@ -33,10 +35,3 @@ vim.opt.scrolloff = 8
 
 vim.opt.colorcolumn = "0"
 vim.opt.signcolumn = "yes"
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-    desc = "Highlight when yanking (copying) text",
-    callback = function()
-        vim.hl.on_yank()
-    end,
-})

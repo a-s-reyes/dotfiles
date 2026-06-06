@@ -1,10 +1,11 @@
+-- Entry point. Load order matters:
+--   options first (termguicolors before the UI plugins draw),
+--   then plugins (which loads the colorscheme, UI, finder, completion,
+--   git, editor, treesitter, and lsp groups).
 require("vim._core.ui2").enable({})
 
-require("options")
-require("keymaps")
-require("commands")
-require("pack")
-require("treesitter")
-require("lsp")
+require("config.options")
+require("config.keymaps")
+require("config.autocmds")
 
-vim.cmd.colorscheme("moonfly")
+require("plugins")
