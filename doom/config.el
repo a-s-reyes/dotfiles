@@ -34,6 +34,7 @@
 ;; `load-theme' function. This is the default:
   (setq doom-theme 'doom-tokyo-night)
   (add-to-list 'default-frame-alist '(alpha-background . 90))
+  (global-auto-revert-mode 1)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
