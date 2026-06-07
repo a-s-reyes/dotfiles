@@ -18,9 +18,11 @@ vim.pack.add({
     "https://github.com/akinsho/bufferline.nvim",
     "https://github.com/nvim-lualine/lualine.nvim",
     "https://github.com/lukas-reineke/indent-blankline.nvim",
+    "https://github.com/rcarriga/nvim-notify",
 
     -- fuzzy finder
     "https://github.com/nvim-telescope/telescope.nvim",
+    "https://github.com/MagicDuck/grug-far.nvim",
 
     -- completion + snippets
     "https://github.com/hrsh7th/nvim-cmp",
@@ -42,6 +44,13 @@ vim.pack.add({
     "https://github.com/akinsho/toggleterm.nvim",
     "https://github.com/mg979/vim-visual-multi",
     "https://github.com/folke/trouble.nvim",
+    "https://github.com/dstein64/vim-startuptime",
+
+    -- debugging
+    "https://github.com/mfussenegger/nvim-dap",
+    "https://github.com/rcarriga/nvim-dap-ui",
+    "https://github.com/nvim-neotest/nvim-nio",
+    "https://github.com/theHamsta/nvim-dap-virtual-text",
 
     -- lsp + treesitter
     "https://github.com/neovim/nvim-lspconfig",
@@ -75,3 +84,4 @@ require("plugins.completion")
 require("plugins.git")
 require("plugins.treesitter")
 require("plugins.lsp")
+require("plugins.debug")

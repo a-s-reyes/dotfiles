@@ -19,3 +19,7 @@ vim.keymap.set("n", "<leader>fs", tb.current_buffer_fuzzy_find, { desc = "Search
 -- keep old muscle memory
 vim.keymap.set("n", "<leader>pf", tb.find_files, { desc = "Find files" })
 vim.keymap.set("n", "<leader>ps", tb.live_grep, { desc = "Live grep" })
+
+-- grug-far: project-wide find & replace (<leader>s is the single-file substitute; <leader>S is project-wide)
+require("grug-far").setup({})
+vim.keymap.set({ "n", "x" }, "<leader>S", function() require("grug-far").open() end, { desc = "Search & replace (project)" })

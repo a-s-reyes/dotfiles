@@ -13,6 +13,7 @@ wk.add({
     { "<leader>x", group = "diagnostics" },
     { "<leader>t", group = "terminal" },
     { "<leader>c", group = "code" },
+    { "<leader>D", group = "debug" },
 })
 
 -- neo-tree (VSCode-style left sidebar)
@@ -45,3 +46,9 @@ require("lualine").setup({
 
 -- indent guides
 require("ibl").setup()
+
+-- notifications (pretty popups; becomes the default vim.notify handler)
+local notify = require("notify")
+notify.setup({ timeout = 3000 })
+vim.notify = notify
+vim.keymap.set("n", "<leader>un", function() notify.dismiss({ silent = true }) end, { desc = "Dismiss notifications" })
