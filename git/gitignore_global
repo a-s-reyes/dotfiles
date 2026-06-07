@@ -1,0 +1,21 @@
+# Global gitignore — applies to EVERY repo on this machine.
+# Install: copy (or symlink) this to ~/.gitignore_global, e.g.
+#   cp ~/dotfiles/git/gitignore_global ~/.gitignore_global
+# (gitconfig points at it via core.excludesFile)
+
+# ── OS junk ──
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# ── Editor / IDE noise ──
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# ── Backups ──
+*.bak
+*.backup

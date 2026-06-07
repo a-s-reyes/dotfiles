@@ -6,7 +6,8 @@ Reference gitconfig. Used as a **template** when setting up git on a new machine
 
 | File | Purpose |
 |---|---|
-| `gitconfig` | The reference config — copy this to `~/.gitconfig` on a new machine, then tweak |
+| `gitconfig` | The reference config — copy to `~/.gitconfig`, then set identity in `~/.gitconfig.local` |
+| `gitignore_global` | Global ignore patterns (OS/editor junk) — copy to `~/.gitignore_global` |
 
 ## Why template instead of symlink
 
@@ -23,6 +24,10 @@ For things that change often (shells, nvim, tmux), the bootstrap scripts use sym
 **Linux / macOS:**
 ```bash
 cp ~/dotfiles/git/gitconfig ~/.gitconfig
+cp ~/dotfiles/git/gitignore_global ~/.gitignore_global
+# real identity goes in ~/.gitconfig.local (kept OFF the repo):
+git config --file ~/.gitconfig.local user.name  "Your Name"
+git config --file ~/.gitconfig.local user.email "you@example.com"
 ```
 
 **Windows:**
@@ -30,7 +35,7 @@ cp ~/dotfiles/git/gitconfig ~/.gitconfig
 Copy-Item D:\repos\dotfiles\git\gitconfig $env:USERPROFILE\.gitconfig
 ```
 
-Then open `~/.gitconfig` and tweak anything that needs to differ on this machine (credential helper, work email override, etc.).
+Your name/email live in `~/.gitconfig.local` (not the repo), so the public template never carries your identity. Put other machine-specific bits (credential helper, work email) there too.
 
 ### Existing machine
 
@@ -44,21 +49,20 @@ git config --global alias.lg "log --oneline --graph --decorate"  # cherry-pick o
 
 ## What's in the config
 
-- **Identity** — `user.name` and `user.email`. Change these per machine if you use different emails for work vs personal.
-- **`init.defaultBranch = main`** — new repos start on `main`.
-- **`core.editor = nvim`** — assumes nvim is on PATH.
-- **`pull.rebase = false`** — `git pull` uses merge, not rebase.
-- **`push.default = current`** — `git push` pushes the current branch.
-- **`push.autoSetupRemote = true`** — no `--set-upstream` ceremony on first push.
-- **`color.ui = auto`** — colorize git output in terminals.
-- **Aliases**:
-  - `git s` → `git status -sb` (short + branch line)
-  - `git co` → `git checkout`
-  - `git br` → `git branch`
-  - `git lg` → log graph one-line
-  - `git last` → show last commit
-  - `git unstage <file>` → unstage a file
-- **`[include] path = ~/.gitconfig.local`** — optional. If `~/.gitconfig.local` doesn't exist, git silently ignores it. Lets you split machine-specific overrides into a separate file *if* you want that pattern on a given machine. Not required.
+- **Identity** — placeholder `[user]` only; your real name/email go in `~/.gitconfig.local` (kept off the repo).
+- **`core.excludesFile = ~/.gitignore_global`** — global ignore (see `gitignore_global`).
+- **`init.defaultBranch = main`**, **`core.editor = nvim`**.
+- **`pull.rebase = false`**, **`push.default = current`**, **`push.autoSetupRemote = true`** — pull/push defaults.
+- **`fetch.prune = true`** — drop local refs to deleted remote branches on fetch.
+- **`rebase.autostash = true`** — auto-stash/unstash around rebase & pull.
+- **`rerere.enabled = true`** — remember and replay conflict resolutions.
+- **`merge.conflictStyle = zdiff3`** — conflict markers include the common ancestor.
+- **`diff.algorithm = histogram`**, **`diff.colorMoved = zebra`** — cleaner diffs + moved-line highlighting.
+- **`commit.verbose = true`** — show the diff in the commit-message editor.
+- **`color.ui` / `column.ui = auto`**, **`branch.sort = -committerdate`**, **`help.autocorrect = prompt`** — UI niceties.
+- **Aliases**: `s` (status -sb), `co`, `br`, `lg` (log graph), `last`, `unstage`.
+- **`[include] ~/.gitconfig.local`** — pulls in your machine-local identity/overrides (silently ignored if absent).
+- **`[includeIf "gitdir:~/work/"]`** (commented example) — use a different identity per folder, e.g. work email only in work repos.
 
 ## Don't commit secrets
 

@@ -1,12 +1,16 @@
+# Identity is machine-specific — set your real name/email in ~/.gitconfig.local
+# (untracked), NOT in this shared/public template. The placeholder below is
+# overridden by the [include] at the bottom once ~/.gitconfig.local exists.
 [user]
-    name = andrean reyes
-    email = andrean.reyes@drmsusa.com
+    name = Your Name
+    email = you@example.com
 
 [init]
     defaultBranch = main
 
 [core]
     editor = nvim
+    excludesFile = ~/.gitignore_global
 
 [pull]
     rebase = false
@@ -15,8 +19,36 @@
     default = current
     autoSetupRemote = true
 
+[fetch]
+    prune = true
+
+[rebase]
+    autostash = true
+
+[rerere]
+    enabled = true
+
+[merge]
+    conflictStyle = zdiff3
+
+[diff]
+    algorithm = histogram
+    colorMoved = zebra
+
+[commit]
+    verbose = true
+
 [color]
     ui = auto
+
+[column]
+    ui = auto
+
+[branch]
+    sort = -committerdate
+
+[help]
+    autocorrect = prompt
 
 [alias]
     s = status -sb
@@ -25,3 +57,14 @@
     lg = log --oneline --graph --decorate
     last = log -1 HEAD
     unstage = reset HEAD --
+
+# ── Machine-specific / private overrides (kept off this repo) ─────────
+# Real identity, credential helper, work email, etc. go in these untracked
+# files. Git silently ignores an include whose file doesn't exist.
+[include]
+    path = ~/.gitconfig.local
+
+# Per-folder identity — e.g. use a work email only inside ~/work repos.
+# Create ~/.gitconfig-work with its own [user] email, then uncomment:
+# [includeIf "gitdir:~/work/"]
+#     path = ~/.gitconfig-work
