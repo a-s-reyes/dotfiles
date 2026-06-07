@@ -14,6 +14,9 @@ wk.add({
     { "<leader>t", group = "terminal" },
     { "<leader>c", group = "code" },
     { "<leader>D", group = "debug" },
+    { "<leader>u", group = "ui/toggle" },
+    { "<leader>q", group = "quit" },
+    { "<leader><tab>", group = "tabs" },
 })
 
 -- neo-tree (VSCode-style left sidebar)
