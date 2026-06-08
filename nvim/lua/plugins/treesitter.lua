@@ -1,3 +1,9 @@
+-- On Windows tree-sitter defaults to MSVC (cl.exe); prefer gcc if present so
+-- parser compilation works without a configured MSVC environment. No-op on Linux.
+if vim.fn.has("win32") == 1 and vim.fn.executable("gcc") == 1 then
+    vim.env.CC = "gcc"
+end
+
 local treesitter = require("nvim-treesitter")
 
 local ensure_installed = {

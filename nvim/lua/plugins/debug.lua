@@ -6,7 +6,8 @@ local dap = require("dap")
 local dapui = require("dapui")
 
 -- ── codelldb adapter (LLDB-based; works for C / C++ / Rust) ──────────
-local codelldb = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/adapter/codelldb"
+local exe = vim.fn.has("win32") == 1 and ".exe" or "" -- Windows binary needs .exe
+local codelldb = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/adapter/codelldb" .. exe
 dap.adapters.codelldb = {
     type = "server",
     port = "${port}",

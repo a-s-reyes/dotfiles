@@ -26,6 +26,8 @@ $RECYCLE.BIN/
 # ─────────────────────────────────────────────
 bashrc.local
 *.local
+# per-machine nvim overrides (paths, compiler)
+nvim/lua/config/local.lua
 
 # ─────────────────────────────────────────────
 #  Nvim runtime data (downloaded, not config)

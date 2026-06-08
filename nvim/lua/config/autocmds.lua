@@ -128,7 +128,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
     -- only on a bare `nvim` (no file/stdin) sitting on the empty start buffer
     if vim.fn.argc() == 0 and vim.api.nvim_buf_get_name(0) == "" and vim.bo.filetype == "" then
       vim.schedule(function()
-        require("telescope.builtin").find_files({ cwd = vim.fn.expand("~/repo") })
+        require("telescope.builtin").find_files({ cwd = vim.g.repos_dir or vim.fn.getcwd() })
       end)
     end
   end,

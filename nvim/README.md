@@ -22,6 +22,8 @@ lua/plugins/             plugins, one file per purpose
 - **git**, **ripgrep** — plugin install + grep
 - **a Nerd Font** — icons
 - **clangd** on `PATH` — C/C++ LSP
+- **tree-sitter CLI** — compiles treesitter parsers (`npm i -g tree-sitter-cli` or `cargo install tree-sitter-cli`)
+- a **C compiler** — gcc/clang (Linux/macOS have one; on Windows install MSYS2 so `gcc` is on `PATH`)
 
 ## Install
 
@@ -36,6 +38,23 @@ clangd comes from your system; install the Lua server once:
 ```vim
 :MasonInstall lua-language-server
 ```
+
+## Per-machine & cross-platform
+
+The same config runs on Windows and Linux/macOS. OS differences are handled automatically: on Windows treesitter builds parsers with `gcc` (needs gcc on `PATH`, e.g. MSYS2) and the debugger resolves `codelldb.exe`; on Linux/macOS both are no-ops.
+
+Machine-specific values go in **`lua/config/local.lua`** — gitignored, optional, loaded if present:
+```lua
+vim.g.repos_dir = vim.fn.expand("~/repos")  -- where the startup file picker opens (Windows: "D:/repos")
+```
+
+Per-machine binaries (not in the repo — install once per OS):
+
+| Need | Windows | Fedora |
+|---|---|---|
+| Lua LSP | `:MasonInstall lua-language-server` | `sudo dnf install lua-language-server` |
+| C/C++ LSP | clangd via MSYS2 | `sudo dnf install clang-tools-extra` |
+| debugger | `:MasonInstall codelldb` | `:MasonInstall codelldb` |
 
 ## Things worth knowing
 

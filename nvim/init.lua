@@ -10,3 +10,6 @@ require("config.keymaps")
 require("config.autocmds")
 
 require("plugins")
+
+-- Per-machine overrides (repo paths, compiler prefs, etc.) — gitignored, optional.
+pcall(require, "config.local")
