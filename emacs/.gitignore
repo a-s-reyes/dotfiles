@@ -1,0 +1,33 @@
+# Emacs writes runtime data INTO the config dir — keep it out of git.
+# Only the hand-written .el source should be tracked.
+# NOTE: gitignore comments must be on their OWN line, never after a pattern.
+
+# downloaded packages
+/elpa/
+
+# native-compilation cache
+/eln-cache/
+
+# magit transient state
+/transient/
+
+# tree-sitter grammars installed by treesit-auto
+/tree-sitter/
+
+# treemacs and other caches
+/.cache/
+/var/
+/url/
+/auto-save-list/
+
+# byte-compiled files
+*.elc
+
+# Emacs customize writes
+custom.el
+
+# session/history files
+recentf
+history
+places
+network-security.data

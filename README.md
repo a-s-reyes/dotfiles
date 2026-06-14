@@ -12,7 +12,7 @@ dotfiles/
 ├── tmux/         tmux.conf with vim-style navigation               → tmux/README.md
 ├── git/          portable gitconfig (template, not symlinked)      → git/README.md
 ├── nvim/         Neovim config — vim.pack, VSCode-like stack       → nvim/README.md
-├── doom/         Doom Emacs config — $DOOMDIR (Linux/macOS)        → doom/README.md
+├── emacs/        Emacs config — vanilla (use-package)              → emacs/README.md
 ├── bootstrap.sh  Linux/macOS link script
 └── bootstrap.ps1 Windows link script
 ```
@@ -26,7 +26,7 @@ Start here — each README has the full setup, including how to symlink it on ea
 | `bash/` | bash shell | symlink (live mount) | [bash/README.md](bash/README.md) |
 | `tmux/` | tmux | symlink (live mount) | [tmux/README.md](tmux/README.md) |
 | `nvim/` | Neovim | symlink (live mount) | [nvim/README.md](nvim/README.md) |
-| `doom/` | Doom Emacs | symlink (live mount, Linux/macOS) | [doom/README.md](doom/README.md) |
+| `emacs/` | Emacs | symlink (live mount) | [emacs/README.md](emacs/README.md) |
 | `git/` | git | **template only** (copy by hand) | [git/README.md](git/README.md) |
 
 ## Quick start

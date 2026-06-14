@@ -67,6 +67,12 @@ if (Should-Link 'nvim') {
     Link-Path -Source "$Repo\nvim" -Destination "$env:LOCALAPPDATA\nvim" -LinkType Junction
 }
 
+if (Should-Link 'emacs') {
+    Write-Host "emacs:"
+    # Windows Emacs reads its config from %APPDATA%\.emacs.d by default.
+    Link-Path -Source "$Repo\emacs" -Destination "$env:APPDATA\.emacs.d" -LinkType Junction
+}
+
 # git/ is template-only — copy D:\repos\dotfiles\git\gitconfig to $env:USERPROFILE\.gitconfig
 # by hand on a new machine. Not symlinked, not auto-linked.
 

@@ -63,9 +63,9 @@ if should_link nvim; then
     link "$REPO/nvim" "$HOME/.config/nvim"
 fi
 
-if should_link doom; then
-    echo "doom:"
-    link "$REPO/doom" "$HOME/.config/doom"
+if should_link emacs; then
+    echo "emacs:"
+    link "$REPO/emacs" "$HOME/.config/emacs"
 fi
 
 if should_link tmux; then
