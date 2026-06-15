@@ -24,6 +24,7 @@
 (my/load "lisp/modules/ui")         ; theme + which-key       (≈ colorscheme/ui.lua)
 (my/load "lisp/modules/completion") ; minibuffer + in-buffer  (≈ completion/finder.lua)
 (my/load "lisp/modules/editor")     ; treemacs + tree-sitter  (≈ editor/treesitter.lua)
+(my/load "lisp/modules/lang")       ; LSP via eglot (C/C++)   (≈ lsp.lua)
 (my/load "lisp/modules/git")        ; magit                   (≈ git.lua)
 (my/load "lisp/modules/dashboard")  ; startup screen + banner
 (my/load "lisp/config/keys")        ; keybindings (load last)  (≈ keymaps.lua)
