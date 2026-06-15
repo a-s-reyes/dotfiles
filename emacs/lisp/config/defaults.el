@@ -1,6 +1,5 @@
 ;;; defaults.el --- built-in editor settings -*- lexical-binding: t; -*-
-;; Loaded by init.el. The Emacs equivalent of your nvim options.lua:
-;; just built-in settings, no packages.
+;; Loaded by init.el — built-in settings only, no packages.
 
 ;; ── Quality of life ──────────────────────────────────────────────────
 (setq inhibit-startup-message t

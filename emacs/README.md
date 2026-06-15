@@ -1,7 +1,7 @@
 # emacs
 
-A hand-built, vanilla **Emacs 30** config — no framework. Organized like the
-`nvim/` folder: `init.el` is the orchestrator, the real config lives in `lisp/`.
+A hand-built, vanilla **Emacs 30** config — no framework. `init.el` is the
+orchestrator; the real config lives in `lisp/`.
 
 ## Layout
 
@@ -11,10 +11,10 @@ emacs/
 ├── init.el                # bootstrap (MELPA + use-package) → loads lisp/
 ├── banner.txt             # ASCII art for the dashboard
 └── lisp/
-    ├── config/            # core behavior   (≈ nvim lua/config/)
+    ├── config/            # core behavior
     │   ├── defaults.el     #   built-in settings
     │   └── keys.el         #   keybindings
-    └── modules/           # features/pkgs   (≈ nvim lua/plugins/)
+    └── modules/           # features/pkgs
         ├── ui.el           #   doom-themes + which-key
         ├── completion.el   #   vertico/marginalia/orderless/consult/corfu
         ├── editor.el       #   treemacs + tree-sitter

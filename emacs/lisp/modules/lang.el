@@ -1,5 +1,5 @@
 ;;; lang.el --- language support: LSP via eglot -*- lexical-binding: t; -*-
-;; ≈ your nvim lsp.lua. Uses built-in eglot + clangd for C/C++.
+;; Uses built-in eglot + clangd for C/C++.
 ;; REQUIRES clangd on PATH:  sudo dnf install clang-tools-extra
 
 ;; Eglot is built into Emacs 29+. Auto-start it in C/C++ buffers (both the

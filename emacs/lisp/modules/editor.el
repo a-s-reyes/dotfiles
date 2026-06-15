@@ -1,7 +1,6 @@
 ;;; editor.el --- file tree + tree-sitter -*- lexical-binding: t; -*-
-;; ≈ your nvim editor.lua + treesitter.lua
 
-;; Treemacs — the file-tree sidebar (like nvim's neo-tree). Opened via C-c t.
+;; Treemacs — the file-tree sidebar. Opened via C-c t.
 (use-package treemacs
   :defer t)
 

@@ -1,7 +1,6 @@
 ;;; ui.el --- theme + keybinding hints -*- lexical-binding: t; -*-
-;; ≈ your nvim colorscheme.lua + ui.lua
 
-;; Theme — the same tokyo-night you ran in Doom.
+;; Theme — tokyo-night.
 (use-package doom-themes
   :config
   (load-theme 'doom-tokyo-night :no-confirm))

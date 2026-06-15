@@ -1,5 +1,5 @@
 ;;; completion.el --- minibuffer + in-buffer completion -*- lexical-binding: t; -*-
-;; ≈ your nvim completion.lua + finder.lua (the "Telescope" feel)
+;; Minibuffer + in-buffer completion (the fuzzy-find experience).
 
 ;; Vertico — vertical list of candidates in the minibuffer.
 (use-package vertico

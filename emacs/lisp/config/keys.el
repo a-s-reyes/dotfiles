@@ -1,6 +1,6 @@
 ;;; keys.el --- global keybindings -*- lexical-binding: t; -*-
 ;; Loaded LAST (after the modules) so the commands it binds already exist.
-;; The Emacs equivalent of your nvim keymaps.lua. Native Emacs keys, no evil.
+;; Native Emacs keys, no evil.
 
 (global-set-key (kbd "C-x g") #'magit-status)    ; git
 (global-set-key (kbd "C-c t") #'treemacs)         ; toggle the file tree

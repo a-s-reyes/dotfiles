@@ -1,5 +1,5 @@
 ;;; dashboard.el --- startup dashboard -*- lexical-binding: t; -*-
-;; ≈ your old Doom dashboard. Shows on `emacs` launch with the EMACS banner.
+;; Startup dashboard — shows on `emacs` launch with the EMACS banner.
 
 (use-package dashboard
   :init

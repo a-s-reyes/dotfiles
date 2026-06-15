@@ -1,6 +1,5 @@
 ;;; init.el --- entry point: bootstrap packages, then load lisp/ -*- lexical-binding: t; -*-
-;; Mirrors your nvim layout: this file is the orchestrator (like init.lua);
-;; the real config lives in lisp/config/ and lisp/modules/.
+;; This file is the orchestrator; the real config lives in lisp/config/ and lisp/modules/.
 
 ;; ── Package system + use-package ─────────────────────────────────────
 (require 'package)
@@ -15,19 +14,19 @@
 (require 'use-package)
 (setq use-package-always-ensure t)     ; auto-install any package a module names
 
-;; ── Load my config files (like nvim's require("config.options")) ─────
+;; ── Load my config files ─────────────────────────────────────────────
 (defun my/load (relpath)
   "Load RELPATH (no extension) relative to this config directory."
   (load (expand-file-name relpath user-emacs-directory) nil 'nomessage))
 
-(my/load "lisp/config/defaults")    ; built-in settings       (≈ options.lua)
-(my/load "lisp/modules/ui")         ; theme + which-key       (≈ colorscheme/ui.lua)
-(my/load "lisp/modules/completion") ; minibuffer + in-buffer  (≈ completion/finder.lua)
-(my/load "lisp/modules/editor")     ; treemacs + tree-sitter  (≈ editor/treesitter.lua)
-(my/load "lisp/modules/lang")       ; LSP via eglot (C/C++)   (≈ lsp.lua)
-(my/load "lisp/modules/git")        ; magit                   (≈ git.lua)
+(my/load "lisp/config/defaults")    ; built-in settings
+(my/load "lisp/modules/ui")         ; theme + which-key
+(my/load "lisp/modules/completion") ; minibuffer + in-buffer completion
+(my/load "lisp/modules/editor")     ; treemacs + tree-sitter
+(my/load "lisp/modules/lang")       ; LSP via eglot (C/C++)
+(my/load "lisp/modules/git")        ; magit
 (my/load "lisp/modules/dashboard")  ; startup screen + banner
-(my/load "lisp/config/keys")        ; keybindings (load last)  (≈ keymaps.lua)
+(my/load "lisp/config/keys")        ; keybindings (load last)
 
 ;; ── Restore a sane GC threshold once startup is done ─────────────────
 (add-hook 'after-init-hook
