@@ -37,3 +37,4 @@ nvim/lua/config/local.lua
 nvim/spell/*.spl
 nvim/.netrwhist
 nvim/sessions/
+.gstack/
