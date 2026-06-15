@@ -108,6 +108,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+-- C/C++ indent at 2 spaces (matches the project .clang-format on save)
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("c_indent"),
+  pattern = { "c", "cpp" },
+  callback = function()
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.tabstop = 2
+    vim.opt_local.softtabstop = 2
+  end,
+})
+
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = augroup("auto_create_dir"),
