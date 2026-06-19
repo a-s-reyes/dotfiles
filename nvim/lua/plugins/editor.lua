@@ -3,7 +3,7 @@
 -- auto-close brackets/quotes (cmp integration lives in completion.lua)
 require("nvim-autopairs").setup({})
 
--- surround: sa add / sd delete / sr replace
+-- surround: ys add / ds delete / cs change (S in visual)
 require("nvim-surround").setup({})
 
 -- terminal (VSCode-style toggle: Ctrl-\ or <leader>tt)
@@ -18,6 +18,3 @@ require("trouble").setup({})
 vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics list" })
 vim.keymap.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Buffer diagnostics" })
 
--- vim-visual-multi: Ctrl-n to add a cursor on the next match (VSCode Ctrl-D feel) — no setup needed.
-
--- vim-startuptime: profile startup time with :StartupTime (no setup needed)

@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
         map("gd", vim.lsp.buf.definition, "Go to definition")
         map("gD", vim.lsp.buf.declaration, "Go to declaration")
-        map("df", vim.diagnostic.open_float, "Line diagnostics")
+        map("<leader>cd", vim.diagnostic.open_float, "Line diagnostics")
         map("<leader>cf", vim.lsp.buf.format, "Format buffer")
     end,
 })
